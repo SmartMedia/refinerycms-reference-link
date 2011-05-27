@@ -18,9 +18,6 @@ Gem::Specification.new do |s|
   s.authors           = ['Smart Media Agency']
   s.require_paths     = %w(lib)
 
-  # Runtime dependencies
-  s.add_dependency    'refinerycms-core',   '~> 1.0.0'
-
   s.files             = %w(
     #{files.join("\n    ")}
   )
