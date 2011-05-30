@@ -2,8 +2,7 @@ module Refinery
   module ReferenceLink
     class Referencer
       
-      class << self
-        attr_accessor :syntax        
+      class << self 
         def syntax
           @syntax ||= /\[\[([^\[\]]+)\/([^\\|[\]]+)\|?([^\[\]]+)?\]\]/
         end
