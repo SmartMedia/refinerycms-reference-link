@@ -4,7 +4,7 @@ module Refinery
     
       attr_reader :model, :title, :text
       def initialize(args = {})
-        unless args.key?(:model) and args.key?(:title) and args.key?(:text)
+        unless args.key?(:model) and args.key?(:title)
           raise ArgumentError, 'Wrong arguments for Reference, it expects hash with :model, :title and :text key.' 
         end
         @model = args[:model]
