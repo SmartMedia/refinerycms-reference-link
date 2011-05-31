@@ -18,7 +18,7 @@ module Refinery
       
       def original
         text = "[[#{@model}/#{@title}"
-        text << "|#{@text}" if @text
+        text << "|#{@text}" if @text 
         text << "]]"
       end
       

@@ -8,6 +8,10 @@ describe 'Reference model' do
   end
 
 
+  it 'should use page title if text missing' do
+    @reference_without_text.text.should == nil
+  end
+
   it 'should return original expression' do
     @reference.original.should == '[[Page/Homepage|Index]]'
     @reference_without_text.original.should == '[[Page/Homepage]]'
