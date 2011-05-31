@@ -6,19 +6,27 @@ module Refinery
       
       attr_reader :text
       
-      def link_to(title, url)
-        "<a href=\"#{url}\">#{title}</a>"
+      def to_html(reference)
+        text = reference.text ? reference.text : reference.title
+        url = url_for(reference.link.merge({:only_path => true})) rescue nil
+        @text.gsub!(reference.original, link_to_if(text, url, reference.exists?))
+        
+      end
+      
+      def link_to_if(title, url, link)
+        link ? "<a href=\"#{url}\">#{title}</a>" : title
       end
       
       def initialize(text)
         @text = text
         references = Refinery::ReferenceLink::Referencer.parse(text)
         references.each do |reference|
-          @text.gsub!(reference.original, link_to(reference.text ? reference.text : reference.title, url_for(reference.link.merge({:only_path => true}))))
+          to_html(reference) 
         end
       end
       
       def self.parse(text)
+        p ::Refinery::ReferenceLink::Formatter.new(text).text
         ::Refinery::ReferenceLink::Formatter.new(text).text
       end
       

@@ -1,3 +1,3 @@
-<a href="/ppc">PPcéčko pro všechny</a> a taky druhý odkaz <a href="/ppc">PPC</a>.
+<a href="/homepage">Hello world</a> and second link without title <a href="/homepage">Homepage</a>.
 
-Další odstavec a <a href="/link">Test</a>.
+Next page is not made yet, so it should be not linked.

@@ -11,8 +11,7 @@ describe 'Formatter library' do
   end
 
   it 'should translate reference expression into html hyperlink' do
-    Page.create!(:title => 'PPC')
-    Page.create!(:title => 'Link')    
+    Page.create!(:title => 'Homepage')  
     Refinery::ReferenceLink::Formatter.parse(text).should == parsed_text
   end
   
