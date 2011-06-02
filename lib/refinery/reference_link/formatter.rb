@@ -11,7 +11,7 @@ module Refinery
       def to_html(reference)
         text = reference.text ? reference.text : reference.title
         url = url_for(reference.link.merge({:only_path => true})) rescue nil
-        refs = @doc.css('a.reference-link').select {|el| (el.keys == reference.html.keys) and (el.children.to_s == reference.html.children.to_s)}
+        p refs = @doc.css('a.reference-link').select {|el| (el.keys == reference.html.keys) and (el.children.to_s == reference.html.children.to_s)}
         refs.each do |ref|
           ref['href'] = url.to_s
           ref.remove_attribute('data-model')
@@ -25,7 +25,7 @@ module Refinery
       end
 
       def link_to_if(title, url, link)
-        link ? "<a href=\"#{url}\">#{title}</a>" : title
+        link ? "<a href=\"#{url}\" title=\"title\">#{title}</a>" : title
       end
 
       def initialize(text)
