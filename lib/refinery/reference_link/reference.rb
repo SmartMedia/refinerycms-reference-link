@@ -1,8 +1,10 @@
+
+
 module Refinery
   module ReferenceLink
     class Reference
     
-      attr_reader :model, :title, :text, :object
+      attr_reader :model, :title, :text, :object, :html
       def initialize(args = {})
         unless args.key?(:model) and args.key?(:title)
           raise ArgumentError, 'Wrong arguments for Reference, it expects hash with :model, :title and :text key.' 
@@ -10,16 +12,11 @@ module Refinery
         @model = args[:model]
         @title = args[:title]
         @text  = args[:text]
+        @html = args[:html]
       end
       
       def object
         @object ||= @model.constantize.find_by_title(@title)
-      end
-      
-      def original
-        text = "[[#{@model}/#{@title}"
-        text << "|#{@text}" if @text 
-        text << "]]"
       end
       
       def exists?

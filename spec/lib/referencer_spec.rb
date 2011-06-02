@@ -10,10 +10,6 @@ describe 'Referencer library' do
     Refinery::ReferenceLink::Referencer.should be_a_instance_of Class
   end
   
-  it 'should has default syntax regexp' do
-    Refinery::ReferenceLink::Referencer.syntax.should == /\[\[([^\[\]]+)\/([^\\|[\]]+)\|?([^\[\]]+)?\]\]/
-  end
-  
   it 'should return references from text with references' do
     references = Refinery::ReferenceLink::Referencer.parse(text)
     

@@ -1,18 +1,19 @@
+require 'nokogiri'
+
 module Refinery
   module ReferenceLink
     class Referencer
       
       class << self 
-        def syntax
-          @syntax ||= /\[\[([^\[\]]+)\/([^\\|[\]]+)\|?([^\[\]]+)?\]\]/
-        end
         
         def parse(text)
-          data = text.scan Referencer.syntax
           objects = []
-          data.each do |d|
-            objects << Refinery::ReferenceLink::Reference.new(:model => d[0], :title => d[1], :text => d[2])
-          end          
+          
+          doc = ::Nokogiri::HTML(text)
+          doc.css('a.reference-link').each do |link|
+            objects << Refinery::ReferenceLink::Reference.new(:model => link['data-model'], :title => link['data-page'], :text => link.children.to_s, :html => link)
+            
+          end
           return objects
         end
         

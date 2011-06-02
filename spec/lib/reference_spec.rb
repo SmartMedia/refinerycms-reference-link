@@ -7,16 +7,10 @@ describe 'Reference model' do
     @reference_without_text = Refinery::ReferenceLink::Reference.new(:model => 'Page', :title => 'Homepage')
   end
 
-
   it 'should use page title if text missing' do
     @reference_without_text.text.should == nil
   end
 
-  it 'should return original expression' do
-    @reference.original.should == '[[Page/Homepage|Index]]'
-    @reference_without_text.original.should == '[[Page/Homepage]]'
-  end
-  
   it 'should recognize exsiting reference' do
     Page.create!(:title => 'Homepage')
     @reference.exists?.should be true

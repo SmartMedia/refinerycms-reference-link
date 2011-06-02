@@ -18,6 +18,8 @@ Gem::Specification.new do |s|
   s.authors           = ['Smart Media Agency']
   s.require_paths     = %w(lib)
 
+  s.add_dependency 'nokogiri' 
+
   s.files             = %w(
     #{files.join("\n    ")}
   )
