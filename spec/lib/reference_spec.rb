@@ -3,12 +3,7 @@ require 'spec_helper'
 describe 'Reference model' do
 
   before(:each) do
-    @reference = Refinery::ReferenceLink::Reference.new(:model => 'Page', :title => 'Homepage', :text => 'Index')
-    @reference_without_text = Refinery::ReferenceLink::Reference.new(:model => 'Page', :title => 'Homepage')
-  end
-
-  it 'should use page title if text missing' do
-    @reference_without_text.text.should == nil
+    @reference = Refinery::ReferenceLink::Reference.new(:title => 'Homepage', :text => 'Index', :html => '<a href="Homepage">Homepage</a>')
   end
 
   it 'should recognize exsiting reference' do
@@ -19,12 +14,6 @@ describe 'Reference model' do
   it 'should recognize non-exsiting reference' do
     Page.create!(:title => 'Cool page')
     @reference.exists?.should be false
-  end
-  
-  it 'should raise error when model is not referenceable' do
-    Refinery::ReferenceLink::Reference.new(:model => 'NonreferenceableModel',
-                                           :title => 'Homepage',
-                                           :text => 'Index').should raise_error StandardError                   
   end
   
   it 'should retrun valid url if reference exsists' do

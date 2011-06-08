@@ -14,6 +14,5 @@ describe 'Formatter library' do
     Page.create!(:title => 'Homepage')  
     Refinery::ReferenceLink::Formatter.parse(text).should == parsed_text
   end
-  
-  
+
 end
