@@ -3,3 +3,5 @@
 Next page is not made yet, so it should be not linked.
 
 And this link is not reference, so it should be untouched like <a href="http://en.wikipedia.org/Veronicas">Veronicas</a> song.
+
+And this is <a href="#text">anchor</a>

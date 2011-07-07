@@ -12,7 +12,7 @@ module Refinery
         url = url_for(reference.link.merge({:only_path => true})) rescue nil
         refs = @doc.css('a').select {|el| (el.keys == reference.html.keys) and (el.children.to_s == reference.html.children.to_s)}
         refs.each do |ref|
-          unless ref['href'] == nil
+          unless ref['href'] and ref['href'][0] == 35
             ref['href'] = url.to_s
             # ref.remove_attribute('data-model')
             # ref.remove_attribute('data-page')
