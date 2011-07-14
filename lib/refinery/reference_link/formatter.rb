@@ -28,6 +28,7 @@ module Refinery
       def initialize(text)
         @text = text
         @doc = ::Nokogiri::HTML(@text)
+        @doc.encoding = 'UTF-8'
         references = Refinery::ReferenceLink::Referencer.parse(text)
         references.each do |reference|
           to_html(reference) 
