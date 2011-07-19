@@ -11,6 +11,7 @@ module Refinery
       def to_html(reference)
         url = url_for(reference.link.merge({:only_path => true})) rescue nil
         refs = @doc.css('a').select {|el| (el.keys == reference.html.keys) and (el.children.to_s == reference.html.children.to_s)}
+
         refs.each do |ref|
           unless ref['href'] and ref['href'][0] == 35
             ref['href'] = url.to_s
@@ -28,11 +29,11 @@ module Refinery
       def initialize(text)
         @text = text
         @doc = ::Nokogiri::HTML(@text)
-        @doc.encoding = 'UTF-8'
         references = Refinery::ReferenceLink::Referencer.parse(text)
         references.each do |reference|
-          to_html(reference) 
+          to_html(reference)
         end
+        #@doc.encoding = 'UTF-8'
         @text = @doc.css('body').children.to_s
       end
 
