@@ -33,7 +33,7 @@ module Refinery
         references.each do |reference|
           to_html(reference)
         end
-        #@doc.encoding = 'UTF-8'
+        @doc.encoding = 'UTF-8'
         @text = @doc.css('body').children.to_s
       end
 
