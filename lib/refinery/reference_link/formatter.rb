@@ -10,7 +10,7 @@ module Refinery
 
       def to_html(reference)
         url = url_for(reference.link.merge({:only_path => true})) rescue nil
-        refs = @doc.css('a').select {|el| (el.keys == reference.html.keys) and (el.children.to_s == reference.html.children.to_s)}
+        refs = @doc.css('a').select {|el| el.to_s == reference.html.to_s}
 
         refs.each do |ref|
           unless ref['href'] and ref['href'][0] == 35
