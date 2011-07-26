@@ -19,7 +19,7 @@ module Refinery
             # ref.remove_attribute('data-page')
             # ref['class'] = ref['class'].gsub('reference-link', '')
             # ref.remove_attribute('class') if ref['class'].empty?
-
+            ref['class'] = 'di' if reference.object.try(:'dictionary?')
             ref.replace ref.children.to_s if url.blank?
           end
         end
