@@ -8,7 +8,7 @@ module Refinery
           objects = []
           doc = ::Nokogiri::HTML(text)
           doc.css('a').each do |link|
-            if link['href'].match(%r{^[^:\/.-]*$})
+            if link['href'] and link['href'].match(%r{^[^:\/.-]*$})
               objects << Refinery::ReferenceLink::Reference.new(:title => link['href'], :html => link)
             end
           end
