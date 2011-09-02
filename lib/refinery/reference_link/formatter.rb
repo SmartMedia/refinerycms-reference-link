@@ -22,7 +22,10 @@ module Refinery
             if reference.object.try(:'dictionary?')           
               ref['class'] = 'di'
               if reference.object.parts.any?
-                ref['title'] = Nokogiri::HTML.parse(reference.object.parts.try(:first).body).tap{|n| n.encoding = 'UTF-8'}.css('p').first.text.delete("\r").delete("\n").delete("\t")
+                first_p =  Nokogiri::HTML.parse(reference.object.parts.try(:first).body).tap{|n| n.encoding = 'UTF-8'}.css('p').first
+                if first_p
+                  ref['title'] = first_p.text.delete("\r").delete("\n").delete("\t")
+                end
               end
             end
             ref.replace ref.children.to_s if url.blank? or !reference.object.try(:'live?')
