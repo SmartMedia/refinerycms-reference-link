@@ -19,7 +19,7 @@ module Refinery
             # ref.remove_attribute('data-page')
             # ref['class'] = ref['class'].gsub('reference-link', '')
             # ref.remove_attribute('class') if ref['class'].empty?
-            if reference.object.try(:'dictionary?')           
+            if reference.object.try(:'dictionary?')
               ref['class'] = 'di'
               if reference.object.parts.any?
                 first_p =  Nokogiri::HTML.parse(reference.object.parts.try(:first).body).tap{|n| n.encoding = 'UTF-8'}.css('p').first
@@ -28,7 +28,7 @@ module Refinery
                 end
               end
             end
-            ref.replace ref.children.to_s if url.blank? or !reference.object.try(:'live?')
+            ref.replace ref.children if url.blank? or !reference.object.try(:'live?')
           end
         end
 
@@ -36,12 +36,12 @@ module Refinery
 
       def initialize(text)
         @text = text
+        @doc.encoding = 'UTF-8'
         @doc = ::Nokogiri::HTML(@text)
         references = Refinery::ReferenceLink::Referencer.parse(text)
         references.each do |reference|
           to_html(reference)
         end
-        @doc.encoding = 'UTF-8'
         @text = @doc.css('body').children.to_s
       end
 
