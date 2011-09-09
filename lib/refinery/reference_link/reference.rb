@@ -9,7 +9,7 @@ module Refinery
         unless args.key?(:title) and args.key?(:html)
           raise ArgumentError, 'Wrong arguments for Reference, it expects hash with :title and :html.' 
         end
-        @title = args[:title].delete("http://")
+        @title = args[:title]#.delete("http://")
         @html = args[:html]
       end
 
