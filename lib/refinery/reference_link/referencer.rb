@@ -9,7 +9,7 @@ module Refinery
           doc = ::Nokogiri::HTML(text)
           doc.encoding = 'UTF-8'
           doc.css('a').each do |link|
-            if link['href'] and link['href'][0] != 47 and !link['href'].match(%r{^http:\/\/.+\..+$}) # all props to jschoolcraft
+            if link['href'] and !link['href'].include?('javascript:') and !link['href'].include?('skype:') and link['href'][0] != 47 and !link['href'].match(%r{^http:\/\/.+\..+$}) # all props to jschoolcraft
               objects << Refinery::ReferenceLink::Reference.new(:title => link['href'].gsub("http://", ""), :html => link)
             end
           end
